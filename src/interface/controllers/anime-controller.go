@@ -10,11 +10,11 @@ import (
 )
 
 type AnimeController struct {
-	AnimeInteractor usecases.AnimeInteractor
+	animeInteractor usecases.AnimeInteractor
 }
 
 func NewAnimeController(animeInteractor usecases.AnimeInteractor) *AnimeController {
-	return &AnimeController{AnimeInteractor: animeInteractor}
+	return &AnimeController{animeInteractor: animeInteractor}
 }
 
 func (controller *AnimeController) Add(res http.ResponseWriter, req http.Request) {
@@ -28,7 +28,7 @@ func (controller *AnimeController) Add(res http.ResponseWriter, req http.Request
 		return
 	}
 
-	err2 := controller.AnimeInteractor.CreateAnime(anime)
+	err2 := controller.animeInteractor.CreateAnime(anime)
 	if err2 != nil {
 		res.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(res).Encode(err.Error())
@@ -41,7 +41,7 @@ func (controller *AnimeController) Add(res http.ResponseWriter, req http.Request
 
 func (controller *AnimeController) FindAll(res http.ResponseWriter, req http.Request) {
 	res.Header().Set("Content-type", "application/json")
-	results, err := controller.AnimeInteractor.FindAll()
+	results, err := controller.animeInteractor.FindAll()
 
 	if err != nil {
 		res.WriteHeader(http.StatusInternalServerError)
