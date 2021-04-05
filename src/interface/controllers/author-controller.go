@@ -17,7 +17,7 @@ func NewAuthorController(interactor usecases.AuthorInteractor) *AuthorController
 	return &AuthorController{authorInteractor: interactor}
 }
 
-func (controller *AuthorController) Add(res http.ResponseWriter, req http.Request) {
+func (controller *AuthorController) Add(res http.ResponseWriter, req *http.Request) {
 	res.Header().Set("Content-type", "application/json")
 	var author domain.Author
 

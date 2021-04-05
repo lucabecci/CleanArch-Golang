@@ -17,7 +17,7 @@ func NewAnimeController(animeInteractor usecases.AnimeInteractor) *AnimeControll
 	return &AnimeController{animeInteractor: animeInteractor}
 }
 
-func (controller *AnimeController) Add(res http.ResponseWriter, req http.Request) {
+func (controller *AnimeController) Add(res http.ResponseWriter, req *http.Request) {
 	res.Header().Set("Content-type", "application/json")
 	var anime domain.Anime
 
@@ -39,7 +39,7 @@ func (controller *AnimeController) Add(res http.ResponseWriter, req http.Request
 	json.NewEncoder(res).Encode("Anime created")
 }
 
-func (controller *AnimeController) FindAll(res http.ResponseWriter, req http.Request) {
+func (controller *AnimeController) FindAll(res http.ResponseWriter, req *http.Request) {
 	res.Header().Set("Content-type", "application/json")
 	results, err := controller.animeInteractor.FindAll()
 

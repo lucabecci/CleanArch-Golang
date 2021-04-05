@@ -18,7 +18,7 @@ func (repo AnimeRepo) SaveAnime(anime domain.Anime) error {
 	return nil
 }
 
-func (repo AnimeRepo) FindAll() ([]domain.Anime, error) {
+func (repo AnimeRepo) FindAll() ([]*domain.Anime, error) {
 	results, err := repo.handler.FindAllAnimes()
 	if err != nil {
 		return results, err
